@@ -1,4 +1,5 @@
 <?php
+$config = include 'config.php';
 $posted = ($_SERVER["REQUEST_METHOD"] == "POST");
 
 /**
@@ -34,6 +35,7 @@ function get_results_display($posted) {
 <html>
     <head>
         <title>Thema laatste schooldag</title>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
     <body>
         <div style="display: <?php get_form_display($posted); ?>;">
@@ -46,6 +48,7 @@ function get_results_display($posted) {
                 <input type="radio" name="vote" value="4" />The Dark Examen Rises<br />
                 <input type="radio" name="vote" value="5" />Exception<br />
                 <input type="submit" value="Stem" />
+                <div class="g-recaptcha" data-sitekey="<?php echo $config["site-key"] ?>"></div>
             </form>
         </div>
         <div style="display: <?php get_results_display($posted); ?>;">

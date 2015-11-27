@@ -12,13 +12,28 @@ class Vote_Validator {
      * 
      * @return true als de stem geldig is; anders false
      */
-    function vote_is_valid() {
-        if (!is_detectable_proxy() && !is_tor_exit_node()) {
-            
-        }
+    function vote_is_valid($g_recaptcha_response) {
         // Check if it isn't a proxy or Tor
-        // Check if the IP has already voted
-        // Check if they don't have a cookie
+        if (!$this->is_detectable_proxy() && !$this->is_tor_exit_node()) {
+            // Check captcha
+            if ($this->captcha_is_valid($g_recaptcha_response)) {
+                // Check if the IP has already voted
+                // Check if they don't have a cookie
+            }
+        }
+    }
+
+    /**
+     * Geeft of de ingevulde Google reCAPTCHA geldig is.
+     * 
+     * @param string $g_recaptcha_response de POST resultaten van de reCAPTCHA
+     * @return boolean true als de reCAPTCHA geldig is; anders false
+     */
+    private function captcha_is_valid($g_recaptcha_response) {
+        $config = include 'config.php';
+        $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=" . $config["secret-key"] . "&response=" . $g_recaptcha_response);
+        $decoded_response = json_decode($response, true);
+        return $decoded_response["success"];
     }
 
     /**
@@ -27,7 +42,7 @@ class Vote_Validator {
      * @return boolean true als het redelijk zeker is dat er een proxy gebruikt
      * wordt; anders false
      */
-    function is_detectable_proxy() {
+    private function is_detectable_proxy() {
         return array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER);
     }
 
@@ -37,15 +52,11 @@ class Vote_Validator {
      * 
      * @return boolean true als de gebruiker Tor gebruikt; anders false
      */
-    function is_tor_exit_node() {
-        if (gethostbyname(reverse_IP_octets($_SERVER['REMOTE_ADDR']) . "." . $_SERVER['SERVER_PORT'] . "." . reverse_IP_octets($_SERVER['SERVER_ADDR']) . ".ip-port.exitlist.torproject.org") == "127.0.0.2") {
-            return true;
-        } else {
-            return false;
-        }
+    private function is_tor_exit_node() {
+        return (gethostbyname($this->reverse_IP_octets($_SERVER['REMOTE_ADDR']) . "." . $_SERVER['SERVER_PORT'] . "." . $this->reverse_IP_octets($_SERVER['SERVER_ADDR']) . ".ip-port.exitlist.torproject.org") == "127.0.0.2");
     }
 
-    function reverse_IP_octets($inputip) {
+    private function reverse_IP_octets($inputip) {
         $ipoc = explode(".", $inputip);
         return $ipoc[3] . "." . $ipoc[2] . "." . $ipoc[1] . "." . $ipoc[0];
     }
