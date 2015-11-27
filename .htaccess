@@ -1,0 +1,7 @@
+# .htaccess bestand voor ExamenPoll
+
+# Verbied toegang tot het configuratiebestand
+<files "config.php">
+  order allow,deny
+  deny from all
+</files>
