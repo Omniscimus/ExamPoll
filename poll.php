@@ -1,5 +1,5 @@
 <?php
-$posted = isset($_POST["vote"]);
+$posted = ($_SERVER["REQUEST_METHOD"] == "POST");
 
 /**
  * Geeft de CSS-waarde van display die de form met de poll moet hebben
@@ -7,7 +7,7 @@ $posted = isset($_POST["vote"]);
  * @param string $posted "hidden" als de gebruiker al gestemd heeft; anders
  * "visible"
  */
-function getFormDisplay($posted) {
+function get_form_display($posted) {
     if ($posted) {
         echo "none";
     } else {
@@ -21,7 +21,7 @@ function getFormDisplay($posted) {
  * @param string $posted "visible" als de gebruiker al gestemd heeft; anders
  * "hidden"
  */
-function getResultsDisplay($posted) {
+function get_results_display($posted) {
     if ($posted) {
         echo "initial";
     } else {
@@ -30,12 +30,13 @@ function getResultsDisplay($posted) {
 }
 ?>
 
+<!DOCTYPE html>
 <html>
     <head>
         <title>Thema laatste schooldag</title>
     </head>
     <body>
-        <div style="display: <?php getFormDisplay($posted); ?>;">
+        <div style="display: <?php get_form_display($posted); ?>;">
             <h1>Stem op een thema:</h1>
             <form method="post"
                   action="poll.php">
@@ -47,7 +48,7 @@ function getResultsDisplay($posted) {
                 <input type="submit" value="Stem" />
             </form>
         </div>
-        <div style="display: <?php getResultsDisplay($posted); ?>;">
+        <div style="display: <?php get_results_display($posted); ?>;">
             Je hebt gekozen voor: <?php echo $_POST["vote"]; ?>
         </div>
     </body>
