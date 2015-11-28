@@ -1,6 +1,5 @@
 <?php
-$config = include 'config.php';
-$posted = ($_SERVER["REQUEST_METHOD"] == "POST");
+$posted = ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["vote"]));
 
 /**
  * Geeft de CSS-waarde van display die de form met de poll moet hebben
