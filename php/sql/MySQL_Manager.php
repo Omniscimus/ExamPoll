@@ -1,5 +1,7 @@
 <?php
 
+require_once 'sql/ExamPoll_SQL.php';
+
 /**
  * Verzorgt de communicatie met de MySQL-server.
  *
@@ -51,7 +53,8 @@ class MySQL_Manager {
         $config = include 'config.php';
         $connection = new mysqli(
                 $config["mysql_hostname"], $config["mysql_username"],
-                $config["mysql_password"], NULL, $config["mysql_port"]);
+                $config["mysql_password"], $config["mysql_database"],
+                $config["mysql_port"]);
         if ($connection->connect_error) {
             throw new Exception("Verbinden met de database is mislukt.");
         } else {

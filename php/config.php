@@ -11,4 +11,5 @@ return array(
     "mysql_username" => "root",
     "mysql_password" => "",
     "mysql_port" => "3306",
+    "mysql_database" => "exampoll"
 );

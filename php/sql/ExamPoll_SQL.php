@@ -21,32 +21,59 @@ class ExamPoll_SQL {
     /**
      * Voegt een stem toe aan de database.
      * 
+     * @param string $code de stemcode van de persoon die gestemd heeft
      * @param int $vote het nummer van het item waarop gestemd is
      */
     function add_vote($code, $vote) {
-        // INSERT INTO votes (ip, vote) VALUES ($ip, $vote), prepared statement
+        $delete_statement = $this->mySQL_manager->getConnection()->
+                prepare("DELETE FROM codes WHERE code = ?;");
+        $delete_statement->bind_param("s", $code);
+        $success = $delete_statement->execute();
+        $delete_statement->close();
+
+        if ($success) {
+            $increment_statement = $this->mySQL_manager->getConnection()->
+                    prepare("UPDATE votes SET counter=counter+1 WHERE option=?;");
+            $increment_statement->bind_param("i", $vote);
+            $increment_statement->execute();
+            $increment_statement->close();
+        }
     }
 
     /**
      * Geeft of het gegeven IP-adres al gestemd heeft.
      * 
-     * @param string $ip het te controleren IP-adres
-     * @return boolean true als het gegeven IP-adres al gestemd heeft; anders
-     * false
+     * @param string $code de te controleren stemcode
+     * @return boolean true als het gegeven IP-adres nog niet gestemd heeft;
+     * anders false
      */
-    function has_voted($code) {
-        $result = mysql_query("SELECT COUNT(*) FROM votes WHERE ip = '" . $code . "';");
-        // get result
-        //return (result > 0);
+    function is_valid($code) {
+        if (!isset($code)) {
+            return false;
+        }
+        $statement = $this->mySQL_manager->getConnection()->
+                prepare("SELECT COUNT(*) FROM codes WHERE code = ?;");
+        $statement->bind_param("s", $code);
+        $statement->execute();
+
+        $statement->bind_result($matches);
+        $statement->fetch();
+        $statement->close();
+        return ($matches > 0);
     }
 
     /**
      * Geeft de resultaten van de poll tot nu toe.
      * 
-     * @return array een lijst met de resultaten van de poll
+     * @return array een lijst met arrays waarin de optie en het aantal votes
+     * staan
      */
     function get_results() {
-        // SELECT COUNT(*) FROM (SELECT * FROM votes WHERE vote = 1) AS 1, COUNT(*) FROM (SELECT * FROM votes WHERE vote = 2) AS 2, etc.
+        $results = $this->mySQL_manager->getConnection()->
+                query("SELECT * FROM votes;");
+        $rows = $results->fetch_all();
+        $results->free();
+        return $rows;
     }
 
 }
