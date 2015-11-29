@@ -9,7 +9,7 @@ $mode = $validator->get_response_mode();
 <html>
     <head>
         <title>Thema laatste schooldag</title>
-        <?php if ($mode === 0 || $mode === 2): ?>
+        <?php if ($mode === 0): ?>
             <script src='https://www.google.com/recaptcha/api.js'></script>
         <?php endif; ?>
     </head>
@@ -25,6 +25,7 @@ $mode = $validator->get_response_mode();
                     <input type="radio" name="vote" value="4" />The Dark Examen Rises<br />
                     <input type="radio" name="vote" value="5" />Exception<br />
                     <input type="hidden" name="code" value="<?php echo $_GET["code"]; ?>" />
+                    <?php $config = include 'config.php'; ?>
                     <div class="g-recaptcha" data-sitekey="<?php echo $config["site-key"] ?>"></div>
                     <input type="submit" value="Stem" />
                 </form>
@@ -40,7 +41,6 @@ $mode = $validator->get_response_mode();
                 <h1>Stemcode invullen</h1>
                 <form method="get" action="poll.php">
                     Stemcode: <input type="text" name="code" />
-                    <div class="g-recaptcha" data-sitekey="<?php echo $config["site-key"] ?>"></div>
                     <input type="submit" value="Zoek" />
                 </form>
             </div>
