@@ -3,6 +3,11 @@ require_once 'Vote_Validator.php';
 
 $validator = new Vote_Validator();
 $mode = $validator->get_response_mode();
+
+if ($mode === 3) {
+    $mySQL_manager = $validator->get_mySQL_manager()->getExamPoll_SQL()->
+            add_vote($_POST["code"], $_POST["vote"]);
+}
 ?>
 
 <!DOCTYPE html>
