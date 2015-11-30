@@ -11,5 +11,11 @@ return array(
     "mysql_username" => "root",
     "mysql_password" => "",
     "mysql_port" => "3306",
-    "mysql_database" => "exampoll"
+    "mysql_database" => "exampoll",
+    
+    // Wachtwoord om de resultaten op te vragen.
+    // Gebruik hier geen wachtwoord dat je ook ergens anders voor gebruikt; als
+    // iemand dit zou h4xx0rren zou hij meteen het plaintext wachtwoord weten.
+    // Geen spooky hash & salt oid. gebruikt om het simpel te houden.
+    "results-password" => "someveryspookypassword"
 );
