@@ -17,8 +17,8 @@ if ($mode === 3) {
     <?php if ($mode === 0): ?>
       <script src='https://www.google.com/recaptcha/api.js'></script>
     <?php endif; ?>
-    <link type="text/css" rel="stylesheet" href="/foundation/css/foundation.css">
-    <link type="text/css" rel="stylesheet" href="/foundation/css/exampoll.css">
+    <link type="text/css" rel="stylesheet" href="foundation/css/foundation.css">
+    <link type="text/css" rel="stylesheet" href="foundation/css/exampoll.css">
   </head>
   <body>
     <?php if ($mode === 0): ?>
