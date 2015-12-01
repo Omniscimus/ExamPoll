@@ -33,6 +33,9 @@ class ExamPoll_SQL {
         $this->mySQL_manager->getConnection()->multi_query($queries);
         // Gebruik niet 'option' als column name omdat dat een MySQL keyword is
         // -> syntax error.
+        while ($this->mySQL_manager->getConnection()->next_result()) {}
+        // Kan geen method vinden die alle results in een keer vrijgeeft,
+        // suggesties welkom
     }
 
     /**
