@@ -49,26 +49,21 @@ if ($mode === 3) {
           <!-- The options -->
           <?php
             $options = include "options.php";
-
-            $i = 1;
-            foreach ($options as $option)
-            { ?>
+            for ($i = 0; $i < count($options); $i++):
+              ?>
             <div class="row">
               <div class="small-12 columns votingItemHeader">
                 <input required type="radio" name="vote" value="<?php echo
                 $i;
                 ?>">
-                <label><h4><? echo $option['name']; ?></h4></label>
+                <label><h4><?php echo $options[$i]['name']; ?></h4></label>
               </div>
               <div class="medium-12 columns votingItemDescription"
                    style="padding-left: 2em;">
-                <p><? echo $option['description']; ?></p>
+                <p><?php echo $options[$i]['description']; ?></p>
               </div>
             </div>
-              <?php
-              $i++;
-            }
-          ?>
+          <?php endfor; ?>
            <div class="row">
              <div class="small-12 columns"
                   style="margin-top: 1em">
