@@ -16,6 +16,23 @@ class ExamPoll_SQL {
      */
     function __construct($mySQL_manager) {
         $this->mySQL_manager = $mySQL_manager;
+        $this->setup_tables();
+    }
+
+    /**
+     * Maakt de tabel met keuzes als hij nog niet bestaat, en voegt rijen toe
+     * voor (eventuele) nieuwe opties.
+     */
+    function setup_tables() {
+        $vote_options = include 'options.php';
+        
+        $queries = "CREATE TABLE IF NOT EXISTS votes (options TINYINT UNSIGNED UNIQUE, counter INT UNSIGNED);";
+        for($i = 0; $i < count($vote_options); $i++) {
+            $queries = $queries . "INSERT IGNORE INTO votes (options, counter) VALUES ($i, 0);";
+        }
+        $this->mySQL_manager->getConnection()->multi_query($queries);
+        // Gebruik niet 'option' als column name omdat dat een MySQL keyword is
+        // -> syntax error.
     }
 
     /**
@@ -33,7 +50,7 @@ class ExamPoll_SQL {
 
         if ($success) {
             $increment_statement = $this->mySQL_manager->getConnection()->
-                    prepare("UPDATE votes SET counter=counter+1 WHERE option=?;");
+                    prepare("UPDATE votes SET counter=counter+1 WHERE options=?;");
             $increment_statement->bind_param("i", $vote);
             $increment_statement->execute();
             $increment_statement->close();
