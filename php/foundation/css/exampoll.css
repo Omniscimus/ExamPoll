@@ -43,3 +43,7 @@ footer {
   position: fixed;
   text-align: center;
 }
+
+a {
+  color: #d89541;
+}
