@@ -53,12 +53,12 @@ if ($mode === 3) {
             $i = 1;
             foreach ($options as $option)
             { ?>
-            <div class="row">
+            <div class="medium-6 columns">
               <div class="small-12 columns votingItemHeader">
                 <input required type="radio" name="vote" value="<?php echo
                 $i;
                 ?>">
-                <label><h4><? echo $option['name']; ?></h4></label>
+                <label><h5><? echo $option['name']; ?></h5></label>
               </div>
               <div class="medium-12 columns votingItemDescription"
                    style="padding-left: 2em;">
@@ -113,7 +113,7 @@ if ($mode === 3) {
                   <input type="text" name="code" />
                 </label>
 
-                <input type="submit" value="Zoek" class="button"/>
+                <input type="submit" value="Verder" class="button"/>
               </form>
 
             </div>

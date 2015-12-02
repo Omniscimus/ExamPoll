@@ -16,7 +16,7 @@
   box-shadow: 0px 5px 0px 0px #eeeeee;
 }
 
-.login .button {
+.button {
   background-color: #d89541;
 }
 
@@ -24,9 +24,10 @@
   margin-top: 1em;
   background-color: #2f668a;
   padding: 0.5em 1em;
+  padding-bottom:0em;
 }
 
-.votingItemHeader h4 { color: white; }
+.votingItemHeader h5 { color: white; }
 
 .votingItemDescription {
   background-color: #eee;
