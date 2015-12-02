@@ -128,6 +128,27 @@ if ($mode === 3) {
              alt="WOW" />
       </div>
     <?php endif; ?>
+    <div style="height: 100px;">
+      <!-- Om te voorkomen dat de (fixed) footer de Stem-knop verbergt op kleine schermen -->
+    </div>
+    <footer>
+      <script>
+          var charstring = "abcdefghijklmnopqrstuvwxyz1234567890§±!@#$%^&*()_-+=[]\';/?.>,<|:~`";
+          var chars = charstring.split('');
+          function hack() {
+              window.setTimeout(hack,50);
+              document.getElementById('hax').innerHTML = chars[Math.floor(Math.random() * (chars.length - 1))];
+          }
+          while (true) {
+            hack();
+          }
+        </script>
+        Gemaakt met <hack style="color: green;font-family: Courier" id="hax"></hack> 
+        door <a href="http://mateybyrd.net/" target="_blank">Nick</a> en 
+        <a href="http://www.omniscimus.net/" target="_blank">Reinier</a>. 
+        Vind je dit systeem spooky? 
+        <a href="https://github.com/Omniscimus/ExamPoll" target="_blank">Bekijk de broncode op GitHub!</a>
+    </footer>
   </body>
 </html>
 
