@@ -17,5 +17,5 @@ return array(
     // Gebruik hier geen wachtwoord dat je ook ergens anders voor gebruikt; als
     // iemand dit zou h4xx0rren zou hij meteen het plaintext wachtwoord weten.
     // Geen spooky hash & salt oid. gebruikt om het simpel te houden.
-    "results-password" => "r"
+    "results-password" => "notspookyenough4me"
 );
