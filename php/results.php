@@ -4,18 +4,16 @@ if (is_string($_POST["password"])) {
   if ($_POST["password"] == $config["results-password"]) {
     $mode = 0; // Correct password
     require_once 'sql/MySQL_Manager.php';
+    $mySQL = new MySQL_Manager();
+    $results = $mySQL->getExamPoll_SQL()->get_results();
+    $mySQL->closeConnection();
+    $vote_options = include 'options.php';
   } else {
     $mode = 1; // Wrong password
   }
 } else {
   $mode = 2; // No password yet
 }
-
-$mySQL = new MySQL_Manager();
-$results = $mySQL->getExamPoll_SQL()->get_results();
-$mySQL->closeConnection();
-
-$vote_options = include 'options.php';
 ?>
 
 <!DOCTYPE html>
@@ -92,10 +90,13 @@ $vote_options = include 'options.php';
 
             <div class="medium-6 columns">
               <p>
-                Hierbij de resultaten, hierboven ziet u de resultaten weer gegeven in een grafiek. Hiernaast ziet u de resultaten in cijfers.
+                Hierbij de resultaten, hierboven zie je de resultaten weer gegeven in een grafiek. Hiernaast zie je de resultaten in cijfers.
               </p>
               <p>
-                Mogelijk hier meer informatie over hoe het programma werkt, zoals codes genereeren etc.
+                Iedereen krijgt via Itslearning een stemcode toegestuurd. Deze kunnen ze invullen of ze kunnen klikken op de link in het bericht,
+                om te stemmen. Deze codes staan ook in de database (NIET gekoppeld aan de naam van de leerlingen). Wanneer een leerling stemt, 
+                wordt zijn/haar code verwijderd uit de database en wordt de stem toegevoegd. Op deze manier kan niemand dubbel stemmen.<br />
+                Er zijn zoveel mogelijke codes, dat de kans ongeveer 0 is dat je er zomaar een raadt.
               </p>
             </div>
 
