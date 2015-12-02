@@ -25,12 +25,11 @@ if ($mode === 3) {
       <!-- Vote page -->
 
       <!-- Header, title -->
-      <div class="row">
+      <div class="row" style="margin-top: 1em;">
         <div class="medium-10 medium-centered columns">
           <h3>Stem op een thema</h3>
         </div>
       </div>
-
 
       <div class="row">
         <div class="medium-10 medium-centered columns">
@@ -47,25 +46,25 @@ if ($mode === 3) {
           </div>
           <form method="post">
           <!-- The options -->
-          <?php
-            $options = include "options.php";
-            for ($i = 0; $i < count($options); $i++):
-              ?>
+            <?php
+              $options = include "options.php";
+              for ($i = 0; $i < count($options); $i++):
+                ?>
+              <div class="medium-6 medium-offset-0 columns">
+                <div class="columns votingItemHeader">
+                  <input required type="radio" name="vote" value="<?php echo
+                  $i;
+                  ?>">
+                  <label><h5><?php echo $options[$i]['name']; ?></h5></label>
+                </div>
+                <div class="columns votingItemDescription"
+                     style="padding-left: 2em;">
+                  <p><?php echo $options[$i]['description']; ?></p>
+                </div>
+              </div>
+              <?php endfor; ?>
             <div class="row">
-              <div class="small-12 columns votingItemHeader">
-                <input required type="radio" name="vote" value="<?php echo
-                $i;
-                ?>">
-                <label><h4><?php echo $options[$i]['name']; ?></h4></label>
-              </div>
-              <div class="medium-12 columns votingItemDescription"
-                   style="padding-left: 2em;">
-                <p><?php echo $options[$i]['description']; ?></p>
-              </div>
-            </div>
-          <?php endfor; ?>
-           <div class="row">
-             <div class="small-12 columns"
+              <div class="small-12 columns"
                   style="margin-top: 1em">
                <input type="hidden" name="code" value="<?php echo $_GET["code"]; ?>" />
                <?php $config = include 'config.php'; ?>

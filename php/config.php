@@ -7,7 +7,7 @@ return array(
     "secret-key" => "asfdajsfdkjasj13414",
     
     // MySQL info
-    "mysql_hostname" => "localhost",
+    "mysql_hostname" => "127.0.0.1",
     "mysql_username" => "root",
     "mysql_password" => "",
     "mysql_port" => "3306",
@@ -17,5 +17,5 @@ return array(
     // Gebruik hier geen wachtwoord dat je ook ergens anders voor gebruikt; als
     // iemand dit zou h4xx0rren zou hij meteen het plaintext wachtwoord weten.
     // Geen spooky hash & salt oid. gebruikt om het simpel te houden.
-    "results-password" => "someveryspookypassword"
+    "results-password" => "r"
 );
