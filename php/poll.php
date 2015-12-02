@@ -66,18 +66,17 @@ if ($mode === 3) {
             <div class="row">
               <div class="small-12 columns"
                   style="margin-top: 1em">
-               <input type="hidden" name="code" value="<?php echo $_GET["code"]; ?>" />
-               <?php $config = include 'config.php'; ?>
-               <label>
-                 <h5>Captcha</h5>
-                 <div class="g-recaptcha" data-sitekey="<?php echo $config["site-key"] ?>"></div>
-               </label>
-               <input type="submit" value="Stem" class="button"
+                <input type="hidden" name="code" value="<?php echo $_GET["code"]; ?>" />
+                <?php $config = include 'config.php'; ?>
+                <label>
+                  <h5>Captcha</h5>
+                  <div class="g-recaptcha" data-sitekey="<?php echo $config["site-key"] ?>"></div>
+                </label>
+                <input type="submit" value="Stem" class="button"
                       style="padding: 1em 4em; margin-top: 0.2em;">
-
-             </div>
-           </div>
-        </form>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     <?php elseif ($mode === 1): ?>
