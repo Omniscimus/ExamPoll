@@ -24,6 +24,9 @@ if ($mode === 3) {
     <?php if ($mode === 0): ?>
       <!-- Vote page -->
 
+      <br />
+      <br />
+      
       <!-- Header, title -->
       <div class="row">
         <div class="medium-10 medium-centered columns">
@@ -38,10 +41,10 @@ if ($mode === 3) {
           <div class="row">
             <div class="small-12 columns">
               <p>
-              <h5>Werking</h5>
-              Voor het eind examen van het schooljaar 2015-2016 kunt u uw keuze
-              aangeven voor een mogelijke eindexamenstunt. Hieronder ziet u de
-              keuzes. U kunt er maximaal 1 aanvinken.
+              Als je eindexamenkandidaat bent, kun je hier je voorkeur opgeven
+              voor het thema van de examenstunt van het schooljaar 2015-2016. Je
+              kunt maximaal 1 keuze aanvinken.<br /><br />
+              Groetjes ~De eindexamencommissie.
               </p>
             </div>
           </div>
@@ -70,14 +73,9 @@ if ($mode === 3) {
                <input type="hidden" name="code" value="<?php echo $_GET["code"]; ?>" />
                <?php $config = include 'config.php'; ?>
                <label>
-                 <h5>Captcha Code</h5>
+                 <h5>Captcha</h5>
                  <div class="g-recaptcha" data-sitekey="<?php echo $config["site-key"] ?>"></div>
                </label>
-               <p style="margin-top: 1em; margin-bottom: 0.5em;">
-                 Als u zeker weet dat u de juiste keuze heeft gemaakt en
-                 als u de captcha code correct hebt ingevoerd kunt u op de
-                 stem knop klikken.
-               </p>
                <input type="submit" value="Stem" class="button"
                       style="padding: 1em 4em; margin-top: 0.2em;">
 
@@ -91,6 +89,9 @@ if ($mode === 3) {
         <h1>Stemcode ongeldig</h1>
         <p>Je stemcode is ongeldig. Dit kan betekenen dat je al gestemd
             hebt, of dat je een verkeerde code hebt ingevuld.</p>
+        <p>Gebruik de link uit het bericht dat je als eindexamenkandidaat hebt
+            ontvangen via <a href="https://nehalennia.itslearning.com/index.aspx">Itslearning</a>, 
+            of <a href="poll.php">vul je code correct in</a>.</p>
       </div>
     <?php elseif ($mode === 2): ?>
       <!-- Enter code page -->
@@ -109,6 +110,8 @@ if ($mode === 3) {
                 </label>
 
                 <input type="submit" value="Zoek" class="button"/>
+                <p>Als je eindexamenkandidaat bent, heb je een stemcode
+                    ontvangen via <a href="https://nehalennia.itslearning.com/index.aspx" target="_blank">Itslearning</a>.</p>
               </form>
 
             </div>
@@ -121,9 +124,10 @@ if ($mode === 3) {
         <p>Bedankt voor je stem!</p>
       </div>
     <?php elseif ($mode === 4): ?>
-      <div>
+      <div style="text-align: center;">
         <h1>Wow.</h1>
-        <p>Volgens mij bent u een 1337 h4xx0r. Probeer het nog eens.</p>
+        <p>Volgens mij bent u een 1337 h4xx0r.<br />
+            <a href="poll.php">Probeer het nog eens</a>.</p>
         <img src="http://stream1.gifsoup.com/view3/1752198/never-gonna-give-you-up-o.gif"
              alt="WOW" />
       </div>
