@@ -143,7 +143,7 @@ if ($mode === 3) {
           }
         </script>
         Gemaakt met <hack style="color: green;font-family: Courier" id="hax"></hack> 
-        door <a href="http://mateybyrd.net/" target="_blank">Nick</a> en 
+        door <a href="http://www.mateybyrd.net/" target="_blank">Nick</a> en
         <a href="http://www.omniscimus.net/" target="_blank">Reinier</a>. 
         Vind je dit systeem spooky? 
         <a href="https://github.com/Omniscimus/ExamPoll" target="_blank">Bekijk de broncode op GitHub!</a>
