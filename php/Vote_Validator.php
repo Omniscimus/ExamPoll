@@ -58,8 +58,7 @@ class Vote_Validator {
      */
     private function get_GET_mode() {
         // Heeft op link in e-mail geklikt
-        $vote_code = $_GET["code"];
-        if (!isset($vote_code)) {
+        if (!isset($_GET["code"])) {
             return 2;
         } else {
             return 0;
