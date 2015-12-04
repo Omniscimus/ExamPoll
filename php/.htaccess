@@ -1,7 +1,18 @@
-# .htaccess bestand voor ExamenPoll
+# .htaccess bestand voor ExamPoll
 
-# Verbied toegang tot het configuratiebestand
-<files "config.php">
-  order allow,deny
-  deny from all
-</files>
+# Deny access to all pages by default
+Order Deny,Allow
+Deny from all
+Allow from 127.0.0.1
+
+# Allow access to sensible pages
+<Files ~ "^(poll.php|results.php)$">
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+# Allow access to CSS and JS
+<Files ~ "(.css|.js)$">
+    Order Allow,Deny
+    Allow from all
+</Files>
