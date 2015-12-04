@@ -39,9 +39,13 @@ COOKIE=$(node regex.js "$(cat cookies.txt | grep 'ASP.NET_SessionId')")
 
 # Verstuur een testbericht.
 
-ADDRESSEE="neh123456"
-SUBJECT="testsubject"
-MESSAGE="%3Cp%3Ehello+world%3C%2Fp%3E%0D%0A"
+i=1;
+while read ADDRESSEE; do
+
+SUBJECT="Testmail"
+SEDCODE="sed -n "$i"p codes.txt"
+CODE=$($SEDCODE)
+MESSAGE="%3Cp%3EHallo%2C%3Cbr%3E%20dit%20is%20een%20testbericht%20voor%20het%20scriptje.%20Jouw%20unieke%20code%20is%3A%20$CODE%20%3Cbr%3EStem%20via%20deze%20link%3A%20%3Ca%20href%3D%22http%3A%2F%2Fomniscimus.net%2Fpoll%2Fpoll.php%3Fcode%3D$CODE%22%20target%3D%22_blank%22%3ESTEM%3C%2Fa%3E%3Cbr%3EDoehoei%3C%2Fp%3E%0A"
 curl -s \
 'https://nehalennia.itslearning.com/XmlHttp/Api.aspx?Function=MessagingSendMessage&MessageOperationID=1000' \
 -H 'Accept-Encoding: gzip, deflate' \
@@ -49,3 +53,6 @@ curl -s \
 -H 'Cookie: ActiveTimestamp='$(date +%s)'; ASP.NET_SessionId='$COOKIE';' \
 --data 'operationId=1000&to='$ADDRESSEE'&cc=&bcc=&subject='$SUBJECT'&text='$MESSAGE'&files=&id=533257&messageMeasurement=2' \
 > /dev/null
+
+i=$i+1;
+done < students.txt
