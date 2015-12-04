@@ -98,6 +98,10 @@ if (is_string($_POST["password"])) {
                 wordt zijn/haar code verwijderd uit de database en wordt de stem toegevoegd. Op deze manier kan niemand dubbel stemmen.<br />
                 Er zijn zoveel mogelijke codes, dat de kans ongeveer 0 is dat je er zomaar een raadt.
               </p>
+              <p>
+                <i>Wil je weten wie waarop gestemd heeft?</i><br />
+                Not gonna happen. KEK.
+              </p>
             </div>
 
             <div class="medium-5 medium-offset-1 columns">
@@ -132,6 +136,27 @@ if (is_string($_POST["password"])) {
       </div>
 
 
-        <?php endif; ?>
+    <?php endif; ?>
+    <div style="height: 100px;">
+      <!-- Om te voorkomen dat de (fixed) footer de Stem-knop verbergt op kleine schermen -->
+    </div>
+    <footer>
+      <script>
+        var charstring = "abcdefghijklmnopqrstuvwxyz1234567890§±!@#$%^&*()_-+=[]\';/?.>,<|:~`";
+        var chars = charstring.split('');
+        function hack() {
+            window.setTimeout(hack,50);
+            document.getElementById('hax').innerHTML = chars[Math.floor(Math.random() * (chars.length - 1))];
+        }
+        while (true) {
+          hack();
+        }
+      </script>
+      Gemaakt met <hack style="color: green;font-family: Courier" id="hax"></hack> 
+      door <a href="http://www.mateybyrd.net/" target="_blank">Nick</a> en
+      <a href="http://www.omniscimus.net/" target="_blank">Reinier</a>. 
+      Vind je dit systeem spooky? 
+      <a href="https://github.com/Omniscimus/ExamPoll" target="_blank">Bekijk de broncode op GitHub!</a>
+    </footer>
     </body>
 </html>
