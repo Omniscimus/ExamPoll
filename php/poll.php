@@ -46,21 +46,40 @@ if ($mode === 3) {
           </div>
           <form method="post">
           <!-- The options -->
+            <script>
+              function toggle(id)
+              {
+                var headers = document.getElementsByName("votingitem");
+                for (var i = 0; i < headers.length; i++)
+                {
+                  if (i != id) headers[i].style.backgroundColor = '';
+                  else {
+                    headers[i].style.backgroundColor = '#d89541';
+                  }
+                }
+                var label = document.getElementById("label" + id)
+                label.checked = !label.checked;
+              }
+            </script>
             <?php
               $options = include "options.php";
               for ($i = 0; $i < count($options); $i++):
                 ?>
-              <div class="medium-6 medium-offset-0 columns">
-                <div class="columns votingItemHeader">
-                  <input required type="radio" name="vote" value="<?php echo
+              <div class="medium-6 medium-offset-0 columns votingItem">
+                <div class="columns votingItemHeader" onClick="toggle(<?php
+                echo $i; ?>)" id="<?php echo $i; ?>"                    name="votingitem">
+                  <input class="hide" type="radio" name="vote" value="<?php echo
                   $i;
-                  ?>">
-                  <label><h5><?php echo $options[$i]['name']; ?></h5></label>
+                  ?>" id="label<?php echo $i; ?>">
+                  <label><h5><?php echo $options[$i]['name'];
+                      ?></h5></label>
                 </div>
+                <?php if (!empty($options[$i]['description'])): ?>
                 <div class="columns votingItemDescription"
                      style="padding-left: 2em;">
                   <p><?php echo $options[$i]['description']; ?></p>
                 </div>
+                <?php endif; ?>
               </div>
               <?php endfor; ?>
             <div class="row">
@@ -73,7 +92,7 @@ if ($mode === 3) {
                   <div class="g-recaptcha" data-sitekey="<?php echo $config["site-key"] ?>"></div>
                 </label>
                 <input type="submit" value="Stem" class="button"
-                      style="padding: 1em 4em; margin-top: 0.2em;">
+                      style="padding: 1em 4em; margin-top: 0.8em;">
               </div>
             </div>
           </form>

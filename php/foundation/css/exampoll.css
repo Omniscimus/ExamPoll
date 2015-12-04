@@ -20,6 +20,10 @@
   background-color: #d89541;
 }
 
+.votingItem:hover .votingItemHeader {
+  background-color: #d89541;
+}
+
 .votingItemHeader {
   margin-top: 1em;
   background-color: #2f668a;
