@@ -54,5 +54,5 @@ curl -s \
 --data 'operationId=1000&to='$ADDRESSEE'&cc=&bcc=&subject='$SUBJECT'&text='$MESSAGE'&files=&id=533257&messageMeasurement=2' \
 > /dev/null
 
-i=$i+1;
+i=$(($i+1));
 done < students.txt
