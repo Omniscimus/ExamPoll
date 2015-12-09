@@ -17,8 +17,11 @@ if ($mode === 3) {
     <?php if ($mode === 0): ?>
       <script src='https://www.google.com/recaptcha/api.js'></script>
     <?php endif; ?>
+    <meta
     <link type="text/css" rel="stylesheet" href="foundation/css/foundation.css">
     <link type="text/css" rel="stylesheet" href="foundation/css/exampoll.css">
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   </head>
   <body>
     <?php if ($mode === 0): ?>

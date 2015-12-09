@@ -23,6 +23,8 @@ if (is_string($_POST["password"])) {
     <link type="text/css" rel="stylesheet" href="foundation/css/foundation.css">
     <link type="text/css" rel="stylesheet" href="foundation/css/exampoll.css">
     <script src="chartjs/Chart.js"></script>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   </head>
     <body>
     <?php if ($mode !== 0): ?>
