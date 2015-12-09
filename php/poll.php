@@ -20,8 +20,8 @@ if ($mode === 3) {
 
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-      <link type="text/css" rel="stylesheet" href="/foundation/css/foundation.css">
-      <link type="text/css" rel="stylesheet" href="/foundation/css/exampoll.css">
+      <link type="text/css" rel="stylesheet" href="foundation/css/foundation.css">
+      <link type="text/css" rel="stylesheet" href="foundation/css/exampoll.css">
   </head>
   <body>
     <?php if ($mode === 0): ?>
