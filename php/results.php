@@ -67,7 +67,7 @@ if (is_string($_POST["password"])) {
                 var myChart = new Chart(ctx, {
                   type: 'bar',
                   data: {
-                    labels: [<?php foreach($results as $option) echo "'".($vote_options[$option[0]]["name"]."',"); ?>],
+                    labels: [<?php foreach($results as $option) echo "\"".($vote_options[$option[0]]["name"]."\","); ?>],
                     datasets: [{
                       label: 'Amount of Votes',
 //                      data: [10, 5, 19, 10, 5], // Test Variables to test the chart.
